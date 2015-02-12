@@ -30,27 +30,29 @@ public class KnightsTour{
     }
 
     public KnightsTour(int size){
-	
+	board = new int[size][size];
+	for (int y = 0; y < size; y ++){
+	    for (int x = 0; x  < size; x ++){
+		board[y][x] = -1;
+	    }
+	}
     }
-
-    
 
     public void solve(){
-	
+	solve(0, 0);
     }
-
 
     public void solve(int startx, int starty){
-				
+	solve(startx, starty, 0);
     }
-
-
-
 		
     public boolean solve(int x,int y,int currentMoveNumber){
 	System.out.println(this);
 	wait(20);
-				
+	if (y >= board.length || x >= board[0].length){
+	    return false;
+	}
+	board[y][x] = currentMoveNumber;
 	return false;
     }
 }

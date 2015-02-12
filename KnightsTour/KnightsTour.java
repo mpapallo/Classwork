@@ -26,7 +26,26 @@ public class KnightsTour{
     public String toString(){
 	String ans = "\n";
 	//build your knights tour here...
-	return hide + go(0,0) + ans + "\n" + show;
+	for (int i = 0; i < board[0].length; i ++){
+	    ans += " __ ";
+	}
+	ans += "\n";
+	for (int y = 0; y < board.length; y ++){
+	    ans += "|";
+	    for (int x = 0; x < board[0].length; x ++){
+		if (board[y][x] < 10){
+		    ans += " " + board[y][x] + "|" ;
+		}else{
+		    ans += board[y][x] + "|";
+		}
+	    }
+	    ans += "\n";
+	    for (int i = 0; i < board[0].length; i ++){
+		ans += " __ ";
+	    }
+	    ans += "\n";
+	}
+	return clear +hide + go(0,0) + ans + "\n" + show;
     }
 
     public KnightsTour(int size){
@@ -47,12 +66,30 @@ public class KnightsTour{
     }
 		
     public boolean solve(int x,int y,int currentMoveNumber){
-	System.out.println(this);
-	wait(20);
+	//System.out.println(this);
+	//wait(20);
 	if (y >= board.length || x >= board[0].length){
 	    return false;
 	}
-	board[y][x] = currentMoveNumber;
+	try{
+	    if (board[y][x] == 0 && board.length * board.length == currentMoveNumber - 1){
+		return true;
+	    }
+	    if (board[y][x] == -1){
+		board[y][x] = currentMoveNumber;
+		if (solve(x + 2, y + 1, currentMoveNumber + 1) ||
+		    solve(x - 2, y + 1, currentMoveNumber + 1) ||
+		    solve(x + 2, y - 1, currentMoveNumber + 1) ||
+		    solve(x - 2, y - 1, currentMoveNumber + 1) ||
+		    solve(x + 1, y + 2, currentMoveNumber + 1) ||
+		    solve(x - 1, y + 2, currentMoveNumber + 1) ||
+		    solve(x + 1, y - 2, currentMoveNumber + 1) ||
+		    solve(x - 1, y - 2, currentMoveNumber + 1)){
+		    return true;
+		}
+		board[y][x] = -1;
+	    }
+	}catch(Exception e){}
 	return false;
     }
 }
