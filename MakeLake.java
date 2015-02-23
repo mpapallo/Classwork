@@ -26,5 +26,20 @@ public class MakeLake{
       
     }
 
+    public String toString(){
+	String ans = "";
+	for (int r = 0; r < pasture.length; r ++){
+	    for (int c = 0; c < pasture[0].length; c ++){
+		ans += pasture[r][c] + " ";
+	    }
+	    ans += "\n";
+	}
+	return ans;
+    }
+
+    public static void main(String[]args){
+	MakeLake m = new MakeLake();
+	System.out.println(m);
+    }
 
 }
