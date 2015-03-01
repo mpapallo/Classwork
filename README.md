@@ -1,2 +1,2 @@
 # Classwork
-APCS with mr. K
+APCS with Mr. K
